@@ -13,8 +13,10 @@ Classes:
 from __future__ import absolute_import
 
 # External imports
+import os
 import re
 import requests
+import curlify
 
 # pybooru imports
 from . import __version__
@@ -167,6 +169,8 @@ class _Pybooru(object):
                 self.client.headers.update({'content-type': None})
 
             response = self.client.request(method, url, proxies=self.proxies, **request_args)
+            if eval(os.environ.get("CURLIFY", 0)):
+                print(curlify.to_curl(response.request))
 
             self.last_call.update({
                 'API': api_call,
