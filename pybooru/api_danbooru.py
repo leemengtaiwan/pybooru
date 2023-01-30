@@ -988,7 +988,8 @@ class DanbooruApi_Mixin(object):
         return self._get('pool_versions.json', params)
 
     def tag_list(self, name_matches=None, name=None, category=None,
-                 hide_empty=None, has_wiki=None, has_artist=None, order=None):
+                 hide_empty=None, has_wiki=None, has_artist=None, order=None,
+                 id=None, page=None, limit=None):
         """Get a list of tags.
 
         Parameters:
@@ -1012,7 +1013,10 @@ class DanbooruApi_Mixin(object):
             'search[hide_empty]': hide_empty,
             'search[has_wiki]': has_wiki,
             'search[has_artist]': has_artist,
-            'search[order]': order
+            'search[order]': order,
+            'search[id]': id,
+            'page': page,
+            'limit': limit
             }
         return self._get('tags.json', params)
 
@@ -1037,7 +1041,7 @@ class DanbooruApi_Mixin(object):
                          auth=True)
 
     def tag_aliases(self, name_matches=None, antecedent_name=None,
-                    tag_id=None):
+                    tag_id=None, status=None):
         """Get tags aliases.
 
         Parameters:
@@ -1048,7 +1052,8 @@ class DanbooruApi_Mixin(object):
         params = {
             'search[name_matches]': name_matches,
             'search[antecedent_name]': antecedent_name,
-            'search[id]': tag_id
+            'search[id]': tag_id,
+            'search[status': status
             }
         return self._get('tag_aliases.json', params)
 
